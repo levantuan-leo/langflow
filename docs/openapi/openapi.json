@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Langflow",
-    "version": "1.7.1"
+    "version": "1.7.2"
   },
   "paths": {
     "/api/v1/build/{flow_id}/vertices": {
@@ -3575,28 +3575,9 @@
           "Files"
         ],
         "summary": "Download Image",
+        "description": "Download image from storage for browser rendering.",
         "operationId": "download_image_api_v1_files_images__flow_id___file_name__get",
-        "security": [
-          {
-            "OAuth2PasswordBearer": []
-          },
-          {
-            "API key query": []
-          },
-          {
-            "API key header": []
-          }
-        ],
         "parameters": [
-          {
-            "name": "file_name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "File Name"
-            }
-          },
           {
             "name": "flow_id",
             "in": "path",
@@ -3605,6 +3586,15 @@
               "type": "string",
               "format": "uuid",
               "title": "Flow Id"
+            }
+          },
+          {
+            "name": "file_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "File Name"
             }
           }
         ],
@@ -5524,7 +5514,7 @@
         ],
         "summary": "Handle Streamable Http",
         "description": "Streamable HTTP endpoint for MCP clients that support the new transport.",
-        "operationId": "handle_streamable_http_api_v1_mcp_streamable__post",
+        "operationId": "handle_streamable_http_api_v1_mcp_streamable__get",
         "responses": {
           "200": {
             "description": "Successful Response"
@@ -5548,7 +5538,7 @@
         ],
         "summary": "Handle Streamable Http",
         "description": "Streamable HTTP endpoint for MCP clients that support the new transport.",
-        "operationId": "handle_streamable_http_api_v1_mcp_streamable__post",
+        "operationId": "handle_streamable_http_api_v1_mcp_streamable__get",
         "responses": {
           "200": {
             "description": "Successful Response"
@@ -5572,7 +5562,7 @@
         ],
         "summary": "Handle Streamable Http",
         "description": "Streamable HTTP endpoint for MCP clients that support the new transport.",
-        "operationId": "handle_streamable_http_api_v1_mcp_streamable__post",
+        "operationId": "handle_streamable_http_api_v1_mcp_streamable__get",
         "responses": {
           "200": {
             "description": "Successful Response"
@@ -5598,7 +5588,7 @@
         ],
         "summary": "Handle Streamable Http",
         "description": "Streamable HTTP endpoint for MCP clients that support the new transport.",
-        "operationId": "handle_streamable_http_api_v1_mcp_streamable_post",
+        "operationId": "handle_streamable_http_api_v1_mcp_streamable_get",
         "responses": {
           "200": {
             "description": "Successful Response"
@@ -5622,7 +5612,7 @@
         ],
         "summary": "Handle Streamable Http",
         "description": "Streamable HTTP endpoint for MCP clients that support the new transport.",
-        "operationId": "handle_streamable_http_api_v1_mcp_streamable_post",
+        "operationId": "handle_streamable_http_api_v1_mcp_streamable_get",
         "responses": {
           "200": {
             "description": "Successful Response"
@@ -5646,7 +5636,7 @@
         ],
         "summary": "Handle Streamable Http",
         "description": "Streamable HTTP endpoint for MCP clients that support the new transport.",
-        "operationId": "handle_streamable_http_api_v1_mcp_streamable_post",
+        "operationId": "handle_streamable_http_api_v1_mcp_streamable_get",
         "responses": {
           "200": {
             "description": "Successful Response"
@@ -5947,48 +5937,13 @@
       }
     },
     "/api/v1/mcp/project/{project_id}/streamable/": {
-      "post": {
-        "tags": [
-          "mcp_projects"
-        ],
-        "summary": "Handle Project Streamable Http",
-        "description": "Handle Streamable HTTP connections for a specific project.",
-        "operationId": "handle_project_streamable_http_api_v1_mcp_project__project_id__streamable__post",
-        "parameters": [
-          {
-            "name": "project_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Project Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
       "get": {
         "tags": [
           "mcp_projects"
         ],
         "summary": "Handle Project Streamable Http",
         "description": "Handle Streamable HTTP connections for a specific project.",
-        "operationId": "handle_project_streamable_http_api_v1_mcp_project__project_id__streamable__post",
+        "operationId": "handle_project_streamable_http_api_v1_mcp_project__project_id__streamable__get",
         "parameters": [
           {
             "name": "project_id",
@@ -6023,7 +5978,42 @@
         ],
         "summary": "Handle Project Streamable Http",
         "description": "Handle Streamable HTTP connections for a specific project.",
-        "operationId": "handle_project_streamable_http_api_v1_mcp_project__project_id__streamable__post",
+        "operationId": "handle_project_streamable_http_api_v1_mcp_project__project_id__streamable__get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "mcp_projects"
+        ],
+        "summary": "Handle Project Streamable Http",
+        "description": "Handle Streamable HTTP connections for a specific project.",
+        "operationId": "handle_project_streamable_http_api_v1_mcp_project__project_id__streamable__get",
         "parameters": [
           {
             "name": "project_id",
@@ -6054,48 +6044,13 @@
       }
     },
     "/api/v1/mcp/project/{project_id}/streamable": {
-      "post": {
-        "tags": [
-          "mcp_projects"
-        ],
-        "summary": "Handle Project Streamable Http",
-        "description": "Handle Streamable HTTP connections for a specific project.",
-        "operationId": "handle_project_streamable_http_api_v1_mcp_project__project_id__streamable_post",
-        "parameters": [
-          {
-            "name": "project_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "title": "Project Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
       "get": {
         "tags": [
           "mcp_projects"
         ],
         "summary": "Handle Project Streamable Http",
         "description": "Handle Streamable HTTP connections for a specific project.",
-        "operationId": "handle_project_streamable_http_api_v1_mcp_project__project_id__streamable_post",
+        "operationId": "handle_project_streamable_http_api_v1_mcp_project__project_id__streamable_get",
         "parameters": [
           {
             "name": "project_id",
@@ -6130,7 +6085,42 @@
         ],
         "summary": "Handle Project Streamable Http",
         "description": "Handle Streamable HTTP connections for a specific project.",
-        "operationId": "handle_project_streamable_http_api_v1_mcp_project__project_id__streamable_post",
+        "operationId": "handle_project_streamable_http_api_v1_mcp_project__project_id__streamable_get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "mcp_projects"
+        ],
+        "summary": "Handle Project Streamable Http",
+        "description": "Handle Streamable HTTP connections for a specific project.",
+        "operationId": "handle_project_streamable_http_api_v1_mcp_project__project_id__streamable_get",
         "parameters": [
           {
             "name": "project_id",
@@ -13621,7 +13611,19 @@
         "title": "ContentBlock",
         "description": "A block of content that can contain different types of content."
       },
+      "langflow__schema__content_types__CodeContent": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "langflow__schema__content_types__ErrorContent": {
+        "additionalProperties": true,
+        "type": "object"
+      },
       "langflow__schema__content_types__MediaContent": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "langflow__schema__content_types__TextContent": {
         "additionalProperties": true,
         "type": "object"
       },
@@ -13745,19 +13747,7 @@
         "type": "object",
         "title": "Source"
       },
-      "lfx__schema__content_types__CodeContent": {
-        "additionalProperties": true,
-        "type": "object"
-      },
-      "lfx__schema__content_types__ErrorContent": {
-        "additionalProperties": true,
-        "type": "object"
-      },
       "lfx__schema__content_types__JSONContent": {
-        "additionalProperties": true,
-        "type": "object"
-      },
-      "lfx__schema__content_types__TextContent": {
         "additionalProperties": true,
         "type": "object"
       },
